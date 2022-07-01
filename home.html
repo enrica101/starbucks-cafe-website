@@ -16,13 +16,27 @@
             <div class="logo-img"><a href="home.html"><img src="images/NOT_STARBUCKS_BG.png" alt="Starbucks-logo"></a>
             </div>
             <ul>
-
-                <li><a href="menu.html">MENU</a></li>
+                <li><a class="goMenu" href="#">MENU</a></li>
                 <li><a href="#">REWARDS</a></li>
                 <li><a href="#">GIFT CARDS</a></li>
             </ul>
-            <div class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="count">3</span></div>
+            <div class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="count">0</span></div>
         </nav>
+
+        <div class="form-container">
+            <div class="message hide"></div>
+            <form id="getForm" class="">
+                <h5>Do you wish to order? Please fill up the following:</h5><br>
+                <label for="firstName">First Name:</label>
+                <input type="text" name="fname" id="fname" placeholder="Enter your first name..."><br>
+                <label for="lastName">Last Name:</label>
+                <input type="text" name="lname" id="lname" placeholder="Enter your last name..."><br>
+                <div class="btn-form">
+                    <input type="submit" id="submit" value="Submit">
+                    <a id="closeForm" href="home.html">Cancel</a>
+                </div>
+            </form>
+        </div>
 
         <div class="main-img">
             <img src="https://images.unsplash.com/photo-1496379896897-7b57622f431b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8c3RhcmJ1Y2tzJTIwY29mZmVlfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=1480&q=180"
@@ -36,34 +50,28 @@
                     <img src="images/1.jpeg" alt="">
                     <h6 id="item-name">Strawberry Cream Frappuccino</h6>
                     <span><img src="images/rating.png" alt=""></span>
-                    <!-- <button id="btn-select-item">Select</button> -->
-                    <!-- <span class="bottom-item-card">
-                  <button class="add" id="add" href="#"><i class="fa-solid fa-plus"></i></button>  
-                  <small id="price-tag">150.00</small>
-                </span> -->
                 </div>
                 <div class="item-card">
                     <img src="images/1.jpeg" alt="">
                     <h6>Strawberry Cream Frappuccino</h6>
                     <span><img src="images/rating.png" alt=""></span>
-                    <!-- <button id="btn-select-item">Select</button> -->
                 </div>
                 <div class="item-card">
                     <img src="images/1.jpeg" alt="">
                     <h6>Strawberry Cream Frappuccino</h6>
                     <span><img src="images/rating.png" alt=""></span>
-                    <!-- <button id="btn-select-item">Select</button> -->
                 </div>
 
             </div>
-            <a href="menu.html">Go to Menu</a>
+            <a class="goMenu" href="#">Go to Menu</a>
 
         </div>
         <div class="mid-bg-img">
             <img src="https://images.unsplash.com/photo-1565461133566-e35e9e120d5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8c3RhcmJ1Y2tzJTIwY29mZmVlfGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=2000&q=180"
                 alt="Starbucks cafe">
         </div>
-        <script src="script.js"></script>
+
+
         <div class="footer">
             <div class="social-networks">
                 <span class="icon"><i class="fab fa-instagram"></i></span>
@@ -74,7 +82,65 @@
                 <small>&#169; 2022 All rights Reserved</small>
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+            integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            const formOverlay = document.querySelector('.form-container')
+            const menuButtons = document.querySelectorAll('.goMenu')
+            document.getElementById('getForm').addEventListener('submit', getCustomerName)
+            const closeBtn = document.getElementById('closeForm')
 
+
+            menuButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    document.getElementById('getForm').classList.remove('hide');
+                    document.querySelector('.message').classList.add('hide');
+                    formOverlay.classList.add('active')
+                })
+            })
+
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault()
+                formOverlay.classList.remove('active')
+            })
+
+            function getCustomerName(e) {
+                e.preventDefault()
+                var firstName = document.getElementById('fname').value
+                var lastName = document.getElementById('lname').value
+
+                axios.get('orderProcess.php', {
+                    params: {
+                        trigger: 'addCustomer',
+                        firstName: firstName,
+                        lastName: lastName
+                    }
+                })
+                    .then(res => {
+                        document.getElementById('getForm').classList.add('hide');
+                        document.querySelector('.message').classList.remove('hide');
+                        showWelcomeMessage(res.data)
+                    })
+                    .catch(err => console.log(err))
+            }
+
+            async function showWelcomeMessage(data) {
+                if (data) {
+                    document.querySelector('.message').innerHTML += `
+                        <h5>Hi, ${data}!</h5><br><h5>Welcome to Not Starbucks!
+                        <h6>We will redirect you to our menu shortly..</h6></h5>`
+
+                    await new Promise(r => setTimeout(r, 5000))
+                    window.location.href = "menu.html";
+                } else {
+                    alert('DATA: ', data)
+                    document.getElementById('getForm').classList.remove('hide');
+                    document.querySelector('.message').classList.add('hide');
+                }
+            }
+
+        </script>
     </body>
 
 </html>

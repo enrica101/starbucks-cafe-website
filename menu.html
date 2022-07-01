@@ -16,11 +16,11 @@
             <div class="logo-img"><a href="home.html"><img src="images/NOT_STARBUCKS_BG.png" alt="Starbucks-logo"></a>
             </div>
             <ul>
-                <li><a href="menu.html">MENU</a></li>
+                <li><a href="#" id="menu-btn">MENU</a></li>
                 <li><a href="#">REWARDS</a></li>
                 <li><a href="#">GIFT CARDS</a></li>
             </ul>
-            <div class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="count">3</span></div>
+            <div class="cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="count">0</span></div>
         </nav>
 
         <div class="bg-img">
@@ -31,94 +31,42 @@
                     <div class="filter active">Beverages</div>
                     <div class="filter">Food</div>
                 </div>
-                <div class="menu-items active">
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
+                <!-- Beverage Items -->
+                <div class="menu-items beverage active"></div>
+                <!-- Food Items -->
+                <div class="menu-items food"></div>
+            </div>
+            <!-- View Cart -->
+            <div class="overlay-bg">
+                <div class="view-cart">
+                    <div class="top">
+                        <h3>Your Order</h3>
+                        <small id="btn-close"><i class="fa-solid fa-xmark"></i></small>
                     </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-                    <div class="item-card">
-                        <img src="images/b1.png" alt="">
-                        <h6>Strawberry Cream Frappuccino</h6>
-                        <button class="btn-select-item">Select</button>
-                    </div>
-
-                </div>
-
-                <div class="view-item-window">
-
-                    <div class="left-view">
-                        <img src="images/1.jpeg" alt="Starbucks drink">
-                        <select id="select-size">
-                            <option value="Not Venti">Not Venti (16oz)</option>
-                            <option value="Not Large">Not Large (24oz)</option>
-                        </select>
-                    </div>
-                    <div class="right-view">
-                        <h1>Strawberry Raspberry Cheesecake Cream Frappuccino®</h1>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam, tempora atque! Ipsa quis
-                            ipsum veritatis sit nulla quam qui repellendus!
-                        </p>
-                        <b>
-                            <p id="price-tag">189.00</p>
-                        </b>
-                        <button class="add" id="add">Add to Cart</button>
-                    </div><span id="btn-close"><i class="fa-solid fa-xmark"></i></span>
+                    <div class="orders"></div>
+                    <button class="checkout-btn">Checkout</button>
                 </div>
             </div>
-
         </div>
+        
+             <!-- View Checkout -->
+             <div class="checkout-bg">
+                <div class="view-checkout">
+                    <div class="top">
+                        <h3>Order Receipt</h3>
+                        <small id="check-close"><i class="fa-solid fa-xmark"></i></small>
+                    </div>
+                    <div class="receipts"></div>
+                </div>
+            </div>
+        </div>
+            </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"
+            integrity="sha512-xIPqqrfvUAc/Cspuj7Bq0UtHNo/5qkdyngx6Vwt+tmbvTLDszzXM0G6c91LXmGrRx8KEPulT+AfOOez+TeVylg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="script.js"></script>
+        <!-- Footer -->
         <div class="footer">
             <div class="social-networks">
                 <span class="icon"><i class="fab fa-instagram"></i></span>
